@@ -1,0 +1,5 @@
+.DS_Store
+udacity-starter-website
+.idea
+*.pem
+*.csv
