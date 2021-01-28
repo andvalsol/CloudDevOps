@@ -31,8 +31,8 @@ Resources:
           !Sub "${EnvironmentName}-VPCId"
       SecurityGroupIngress:
         - IpProtocol: tcp
-          FromPort: 8080
-          ToPort: 8080
+          FromPort: 80
+          ToPort: 80
           CidrIp: 0.0.0.0/0
         - IpProtocol: tcp
           FromPort: 22
@@ -48,13 +48,13 @@ Resources:
     Properties:
       UserData:
         Fn::Base64: !Sub |
-          #!/bin/bash
-          apt-get update -y
-          apt-get install apache2 -y
-          systemctl start apache2.service
-          cd /var/www/html
-          echo "Udacity Demo Web Server Up and Running!" > index.html
-      ImageId: ami-005bdb005fb00e791
+           #!/bin/bash
+           apt-get update -y
+           apt-get install apache2 -y
+           systemctl start apache2.service
+           cd /var/www/html
+           echo "It works! Udagram, Udacity" > index.html
+      ImageId: ami-06d51e91cea0dac8d
       SecurityGroups:
         - Ref: WebServerSecGroup
       InstanceType: t3.small
@@ -112,7 +112,7 @@ Resources:
       HealthCheckProtocol: HTTP
       HealthCheckTimeoutSeconds: 8
       HealthyThresholdCount: 2
-      Port: 8080
+      Port: 80
       Protocol: HTTP
       UnhealthyThresholdCount: 5
       VpcId:
